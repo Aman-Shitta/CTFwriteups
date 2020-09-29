@@ -1,0 +1,32 @@
+CHALLENGE DESCRIPTION
+  
+  ROT13 is boring!
+  
+ ------------------------------------------------------------------------------------------
+ challenge.txt
+      
+      Ypw'zj zwufpp hwu txadjkcq dtbtyu kqkwxrbvu! Mbz cjzg kv IAJBO{ndldie_al_aqk_jjrnsxee}. 
+      Xzi utj gnn olkd qgq ftk ykaqe uei mbz ocrt qi ynlu, etrm mff'n wij bf wlny mjcj :).
+--------------------------------------------------------------------------------------------
+
+1. ROT is basically a variant of Caesar Cipher and the challnge states this is "ot-i"
+   where 'i' could be anything from [1-26] or [0-25] based on the implementations.
+
+2. So I tried all of them but nothing, The 'i' here I think stands for increment :2
+   
+       If you try to DECODE the ctrimg that is the actual flag 
+                IAJBO{ndldie_al_aqk_jjrnsxee} 
+                and map it with 
+                DUCTF{....}
+                
+          I -> D  21 shifts [rot21]
+          A -> U  20 shifts 
+          J -> C  19 shifts
+          B -> T  18 shifts
+          O -> F  17 shifts
+          
+ 3. With this pattern we could imply that this is a "Progressive shifted ciphertext" [decreasing...]
+       
+ ---------------------------------------
+ flag : DUCTF{crypto_is_fun_kjqlptzy}
+ ---------------------------------------

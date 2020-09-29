@@ -1,0 +1,89 @@
+Description --> Someone here has special powers... but who? And how!?
+
+Connect here:
+ssh -p 50014 user@jh2i.com # password is 'userpass'
+-------------------------------------------------------------------
+1. We are provided with the credentials for 'user'
+  - user
+  - userpass
+  
+  Connect to the system using ssh as described in the challeneg Desc.
+  with the given Creds
+-------------------------------------------------------------------
+The Description says Someone here has special powers and the name of
+challenge is Pseudo[SUDO].
+-------------------------------------------------------------------
+In order to list users on Linux, you have to execute the “cat” command 
+on the “/etc/passwd” file.
+
+user:x:1000:1000:,,,:/home/user:/bin/bash
+james:x:1001:1001:,,,:/home/james:/bin/bash
+mary:x:1002:1002:,,,:/home/mary:/bin/bash
+robert:x:1003:1003:,,,:/home/robert:/bin/bash
+linda:x:1004:1004:,,,:/home/linda:/bin/bash
+todd:x:1005:1005:,,,:/home/todd:/bin/bash
+david:x:1006:1006:,,,:/home/david:/bin/bash
+susan:x:1007:1007:,,,:/home/susan:/bin/bash
+doug:x:1008:1008:,,,:/home/doug:/bin/bash
+brian:x:1009:1009:,,,:/home/brian:/bin/bash
+lisa:x:1010:1010:,,,:/home/lisa:/bin/bash
+jessica:x:1011:1011:,,,:/home/jessica:/bin/bash
+alicia:x:1012:1012:,,,:/home/alicia:/bin/bash
+michael:x:1013:1013:,,,:/home/michael:/bin/bash
+chris:x:1014:1014:,,,:/home/chris:/bin/bash
+karen:x:1015:1015:,,,:/home/karen:/bin/bash
+nancy:x:1016:1016:,,,:/home/nancy:/bin/bash
+mark:x:1017:1017:,,,:/home/mark:/bin/bash
+paul:x:1018:1018:,,,:/home/paul:/bin/bash
+lauren:x:1019:1019:,,,:/home/lauren:/bin/bash
+jason:x:1020:1020:,,,:/home/jason:/bin/bash
+ryan:x:1021:1021:,,,:/home/ryan:/bin/bash
+sharon:x:1022:1022:,,,:/home/sharon:/bin/bash
+edward:x:1023:1023:,,,:/home/edward:/bin/bash
+timothy:x:1024:1024:,,,:/home/timothy:/bin/bash
+helen:x:1025:1025:,,,:/home/helen:/bin/bash
+gary:x:1026:1026:,,,:/home/gary:/bin/bash
+anna:x:1027:1027:,,,:/home/anna:/bin/bash
+brenda:x:1028:1028:,,,:/home/brenda:/bin/bash
+rachel:x:1029:1029:,,,:/home/rachel:/bin/bash
+sam:x:1030:1030:,,,:/home/sam:/bin/bash
+dennis:x:1031:1031:,,,:/home/dennis:/bin/bash
+diane:x:1032:1032:,,,:/home/diane:/bin/bash
+adam:x:1033:1033:,,,:/home/adam:/bin/bash
+peter:x:1034:1034:,,,:/home/peter:/bin/bash
+kelly:x:1035:1035:,,,:/home/kelly:/bin/bash
+**********************************************************************
+There are a Bunch of users , and someone on them has special powers
+and in linux system It means a user is a sudoer which allow the user to run commands 
+as super user on the system.
+**********************************************************************
+
+NOW THE REAL PART
+-------------------------------------------------------------------
+After looking for a bit, I found README file in the "/etc/sudoers.d"
+directory with the credentials of todd and the information that "todd"
+can Run all the commands as sudo user with NOPASSWD required.
+
+user@2bdd81913539:/home$ cat /etc/sudoers.d/README 
+.
+.
+.
+#
+# The credentials for the 'todd' account is 'needle_in_a_haystack'
+todd ALL = NOPASSWD:
+-------------------------------------------------------------------
+user@2bdd81913539:/home$ su todd
+Password:
+todd@2bdd81913539:$
+-------------------------------------------------------------------
+list the content of root directory using
+"sudo -u <user> ls /root"  --> 
+
+todd@2bdd81913539:~$ sudo -u root ls /root
+flag.txt
+
+todd@2bdd81913539:~$ sudo -u root cat /root/flag.txt
+flag{hmmm_that_could_be_a_sneaky_backdoor}
+-------------------------------------------------------------------
+
+FLAG --> flag{hmmm_that_could_be_a_sneaky_backdoor}

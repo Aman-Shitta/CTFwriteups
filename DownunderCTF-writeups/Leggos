@@ -1,0 +1,26 @@
+CHALLENGE DESCRIPTION:
+
+   I <3 Pasta! I won't tell you what my special secret sauce is though!
+   
+   https://chal.duc.tf:30101
+   
+------------------------------------------------------------------------
+1. Go to the provide link.
+2. The web page displays an image and suspiciously right-clicking the page is not allowed.
+   which is using "disableMouseRightClick.js" look for this script under network tab and there is the flag
+
+
+https://chal.duc.tf:30101/disableMouseRightClick.js
+---------------------------------------------------
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    alert('not allowed');
+    });
+
+  //the source reveals my favourite secret sauce 
+  // DUCTF{n0_k37chup_ju57_54uc3_r4w_54uc3_9873984579843} 
+
+
+----------------------------------------------------------
+flag: DUCTF{n0_k37chup_ju57_54uc3_r4w_54uc3_9873984579843} 
+----------------------------------------------------------

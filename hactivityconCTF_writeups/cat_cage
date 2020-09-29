@@ -1,0 +1,53 @@
+Descriptiion of the challenge ----> "We are in the cat cage! Only the good cats get treats!"
+
+Connect here:
+nc jh2i.com 50000
+---------------------------------------------
+First netcat to the jh2i.com on port 50000
+ - We are promted to the system 
+  "user@cat_cage:/home/user$"
+---------------------------------------------
+There is a file with name "get_flag" on the present directory "/home/user"
+---------------------------------------------
+Read the content of the get_flag :
+  user@cat_cage:/home/user$ cat get_flag
+  cat get_flag
+  #!/bin/sh
+
+  echo "Oh I am sorry, only cats can get the flag!"
+  exit 0
+ NOTHING INTRESTING
+---------------------------------------------
+I tried looking in the system for any other file with flag but nothing
+and came across to find out PATH variable is set to "/cat_cage" directory [$PATH variable]
+1. bash
+2. cat
+3. ls
+---------------------------------------------
+So looking again into the get_flag file :
+  user@cat_cage:/home/user$ cat -n get_flag
+  cat -n get_flag
+       1  #!/bin/sh
+       2
+       3  echo "Oh I am sorry, only cats can get the flag!"
+       7  exit 0
+       
+ using cat with "-n" switch retruns the number of line
+ 
+ So, There are three extra lines in between 3-7 that are not displayed
+--------------------------------------------
+So, I used "-A" i.e "--show-all" switch to display whole content of the file
+
+---------------------------------------------
+user@cat_cage:/home/user$ cat -A get_flag
+cat -A get_flag
+#!/bin/sh$
+$
+echo "Oh I am sorry, only cats can get the flag!"$
+exit 0$
+^[[2Aecho "flag{thats_a_good_trick_heres_some_catnip}"$
+^[[1Aecho "Oh I am sorry, only cats can get the flag!"$
+$
+
+---------------------------------------------
+FLAG ----> flag{thats_a_good_trick_heres_some_catnip}

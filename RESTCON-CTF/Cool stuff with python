@@ -1,0 +1,136 @@
+I did not know If I solved it the way it was supposed to be
+But I did it in the simplest way it could have been done
+
+So the challenge is under Debugging and we are given a zip file, which on extracting, gives us challenge with two files:
+1. main.py
+2. alphabet.cpython-38.pyc
+
+looking source code of "main.py"
+==================================================================
+import turtle
+import random
+from math import cos, sin, atan2, radians, degrees 
+import base64
+from alphabet import alphabet
+
+myPen = turtle.Turtle()
+myPen.hideturtle()
+myPen.speed(0)
+window = turtle.Screen()
+window.bgcolor("#000000")
+myPen.pensize(2)
+
+def displayMessage(message,fontSize,color,x,y,rotationAngle):
+  myPen.color(color)
+  message=message.upper()
+  myPen.penup()
+  myPen.goto(x,y)  
+  for character in message:
+    if character in alphabet:
+      letter=alphabet[character]
+      myPen.setheading(rotationAngle)
+      myPen.penup()
+    
+      x=0
+      y=0
+      for dot in letter:
+        angle = atan2((dot[1]-y),(dot[0]-x))
+        angle= degrees(angle)    
+  
+        distance = ((dot[0]-x)**2 + (dot[1]-y)**2)**0.5
+        myPen.setheading(rotationAngle)
+  
+        myPen.left(angle)
+        myPen.forward(distance*fontSize)
+        x = dot[0]
+        y = dot[1]
+        myPen.pendown()
+  
+      myPen.penup()
+      angle = atan2((0-y),(0-x))
+      angle = degrees(angle)    
+  
+      distance = ((0-x)**2 + (0-y)**2)**0.5
+      myPen.setheading(rotationAngle)
+  
+      myPen.left(angle)
+      myPen.forward(distance*fontSize)
+  
+    myPen.setheading(rotationAngle)
+    myPen.penup()
+    myPen.forward(fontSize)    
+    
+    myPen.forward(characterSpacing)
+    
+
+#Main Program Starts Here
+fontSize = 30
+fontColor="#FF00FF"
+characterSpacing = 5
+cursorX = -250
+cursorY = -100
+
+message = ''.join([ chr(int(n)-1) for n in base64.b64decode("ODMgNzAgODQgODUgNjggODAgNzkgMTI0IDExNyAxMTggMTE1IDExNyAxMDkgMTAyIDk2IDEwNiAxMTYgOTYgMTAwIDExMiAxMTIgMTA5IDEyNiA=".encode("ascii")).decode("ascii").split(" ")[:-1]])
+rotationAngle=90
+myPen.goto(cursorX,cursorY)
+
+for character in message:
+  pos=myPen.position()
+  displayMessage(character,fontSize,fontColor,pos[0],pos[1],rotationAngle)
+  rotationAngle-=180/(len(message)-1)
+
+================================================================================================================
+
+The file has a variable message  which is decoding a base64 string:
+"ODMgNzAgODQgODUgNjggODAgNzkgMTI0IDExNyAxMTggMTE1IDExNyAxMDkgMTAyIDk2IDEwNiAxMTYgOTYgMTAwIDExMiAxMTIgMTA5IDEyNiA"
+=================================================================================================================
+
+=================================================================================================================
+Decoding with Base64 gives:
+83 70 84 85 68 80 79 124 117 118 115 117 109 102 96 106 116 96 100 112 112 109 126, which is a decimal string
+=================================================================================================================
+
+Now what "chr(int(n)-1) for n in base64.b64decode("ODMgN........" does is return the ASCII value of (n-1) for n in returned decimal number list
+i,e instead of [83 70 84 85 68 80 79 124 117 118 115 117 109 102 96 106 116 96 100 112 112 109 126]
+
+ACSII of : [82 69 83 84 67 80 77 123 116 117 114 116 108 101 95 105 115 95 99 111 111 108 125] will be printed.
+
+IN PYTHON INTERPRETER:
+>>>   LIST =  [82,69, 83, 84, 67, 80, 77, 123, 116, 117, 114, 116, 108, 101, 95, 105, 115, 95, 99, 111, 111, 108, 125]
+>>>   type(LIST)
+>>>   <type 'list'>
+>>>   for i in LIST:
+...     print(chr(i))
+...
+>>> R
+E
+S
+T
+C
+P
+M
+{
+t
+u
+r
+t
+l
+e
+_
+i
+s
+_
+c
+o
+o
+l
+} 
+==============================================================================
+RESTCON{turtle_is_cool}
+==============================================================================
+
+Despite the fact the description says the flag is in capitals, I think this worked just fine
+or 
+================================================================================
+RESTCON{TURTLE_IS_COOL}
+================================================================================

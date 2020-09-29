@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+
+import pickle
+
+with open ('data','rb') as f:
+	data = pickle.load(f)
+
+
+flag = "DUCTF{"
+for i in range(4,23):
+	flag += chr(data[i])
+
+flag += '}'
+
+print(flag)
+
+----------------------------
+flag : DUCTF{p1ckl3_y0uR_m3554g3}
+----------------------------
