@@ -37,7 +37,7 @@ Password: hacktober-Underdog-Truth-Glimpse
   luciafer@3191a213533a:~/Documents$ cat flag1.txt
   flag{cb07e9d6086d50ee11c0d968f1e5c4bf1c89418c}
   ```
-FLAG : flag{cb07e9d6086d50ee11c0d968f1e5c4bf1c89418c}
+FLAG 1: flag{cb07e9d6086d50ee11c0d968f1e5c4bf1c89418c}
 -----------------------------------------------------
 
 
@@ -70,7 +70,7 @@ Password: hacktober-Underdog-Truth-Glimpse
   The flag2.txt was a hidden file so using "ls -al" to list all files hidden and otherwise.
   Reading the contents of ".flag2.txt"
   
-  flag{728ec98bfaa302b2dfc2f716d3de7869f3eadcbf}
+ FLAG 2 : flag{728ec98bfaa302b2dfc2f716d3de7869f3eadcbf}
   -----------------------------------------------
  
 
@@ -135,7 +135,7 @@ EXAMPLES:	ouija file.txt
 luciafer@3191a213533a:~/Documents$ /usr/local/bin/ouija flag4.txt                                                                                                       flag{4781cbffd13df6622565d45e790b4aac2a4054dc}
 ```
 
-flag{4781cbffd13df6622565d45e790b4aac2a4054dc}
+FLAG 4 : flag{4781cbffd13df6622565d45e790b4aac2a4054dc}
 ---------------------------------------------------------
 
  
@@ -171,5 +171,5 @@ cat /root/../<path>
 
 ".." is used to specify the previous directory and thus allowing me to read the contnts of */home/spookyboi/Documents/flag3.txt*.
 
-flag{445b987b5b80e445c3147314dbfa71acd79c2b67} 
+FLAG 3 : flag{445b987b5b80e445c3147314dbfa71acd79c2b67} 
 -----------------------------------------------
